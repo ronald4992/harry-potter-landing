@@ -60,6 +60,12 @@ npm run build
 npm start
 ```
 
+## 🌐 Despliegue en GitHub Pages
+
+El flujo de GitHub Actions en `.github/workflows/deploy.yml` construye y publica el sitio al hacer push a `main`. Para activarlo, selecciona **Settings > Pages > Build and deployment > Source > GitHub Actions** en el repositorio.
+
+Las rutas de los archivos estáticos se configuran automáticamente para la subruta del repositorio en GitHub Pages. GitHub Pages solo publica el frontend estático; las funciones que envían datos al backend Express (`/api/admission`, `/api/sorting` y `/api/newsletter`) requieren desplegar ese backend por separado.
+
 ---
 
 ## 📜 Licencia y Derechos
