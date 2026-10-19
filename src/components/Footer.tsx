@@ -140,6 +140,15 @@ export const Footer: React.FC = () => {
 
         </div>
 
+        <div className="flex justify-center py-8">
+          <a
+            href="#inscripcion"
+            className="inline-flex items-center justify-center rounded-full border border-[#e6ca65]/60 bg-[#e6ca65] px-6 py-3 font-cinzel text-sm font-bold uppercase tracking-wider text-[#0c0b12] shadow-lg transition-colors hover:bg-[#ffd700] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e6ca65]"
+          >
+            Inscribirme ahora
+          </a>
+        </div>
+
         {/* Bottom Bar: Copyright & Tech Stack */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#6b6254]">
           <div className="flex items-center gap-2">
