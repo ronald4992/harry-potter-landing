@@ -60,7 +60,7 @@ export const PreFooter: React.FC = () => {
   };
 
   return (
-    <section className="relative py-20 bg-gradient-to-b from-[#0a0910] via-[#14101e] to-[#07060b] border-t border-[#e6ca65]/20 overflow-hidden">
+    <section id="inscripcion" className="relative py-20 bg-gradient-to-b from-[#0a0910] via-[#14101e] to-[#07060b] border-t border-[#e6ca65]/20 overflow-hidden">
       
       {/* Decorative Golden Orbs */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#e6ca65]/5 rounded-full blur-3xl pointer-events-none" />
