@@ -4,11 +4,21 @@
    suscripción por lechuza matutina y conexión a Node.js (POST /api/newsletter).
    ========================================================================= */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mail, CheckCircle2, Send, Sparkles, Feather } from 'lucide-react';
 import { magicAudio } from '../audio';
 
 export const PreFooter: React.FC = () => {
+  useEffect(() => {
+    if (document.getElementById('hubspot-forms-embed')) return;
+
+    const script = document.createElement('script');
+    script.id = 'hubspot-forms-embed';
+    script.src = 'https://js.hsforms.net/forms/embed/52188892.js';
+    script.defer = true;
+    document.body.appendChild(script);
+  }, []);
+
   const [email, setEmail] = useState('');
   const [owlChoice, setOwlChoice] = useState<'lechuza-real' | 'buho-nival' | 'pigmeo'>('lechuza-real');
   const [loading, setLoading] = useState(false);
@@ -162,6 +172,13 @@ export const PreFooter: React.FC = () => {
 
             </form>
           )}
+
+          <div
+            className="hs-form-frame mx-auto max-w-lg text-left mt-8"
+            data-region="na1"
+            data-form-id="a163e4c1-fcc2-4749-9f25-0296c0d98bd5"
+            data-portal-id="52188892"
+          />
 
         </div>
 
