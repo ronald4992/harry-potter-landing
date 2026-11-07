@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" width="88" height="88">
+  <defs>
+    <linearGradient id="neville-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4a0000"/>
+      <stop offset="100%" stop-color="#1a0000"/>
+    </linearGradient>
+  </defs>
+  <rect width="88" height="88" rx="44" fill="url(#neville-bg)"/>
+  <!-- Dark hair -->
+  <ellipse cx="44" cy="38" rx="22" ry="18" fill="#2d1d17"/>
+  <!-- Face -->
+  <ellipse cx="44" cy="46" rx="18" ry="20" fill="#fed7aa"/>
+  <!-- Front hair bang -->
+  <path d="M26 36 C32 28, 56 28, 62 36 C56 34, 48 35, 44 38 C40 35, 32 34, 26 36 Z" fill="#2d1d17"/>
+  <!-- Eyes -->
+  <circle cx="37" cy="45" r="2.2" fill="#3f2e22"/>
+  <circle cx="51" cy="45" r="2.2" fill="#3f2e22"/>
+  <!-- Brave friendly smile -->
+  <path d="M39 54 Q44 58 49 54" stroke="#c2775a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- Herbology Mimbulus sprout on shoulder -->
+  <circle cx="28" cy="70" r="4.5" fill="#4ade80"/>
+  <circle cx="26" cy="67" r="2" fill="#22c55e"/>
+  <!-- Gryffindor sweater / vest -->
+  <path d="M30 68 L44 60 L58 68 L54 88 L34 88 Z" fill="#740001"/>
+  <line x1="44" y1="62" x2="44" y2="88" stroke="#eeba30" stroke-width="2"/>
+  <!-- Golden border -->
+  <circle cx="44" cy="44" r="42" fill="none" stroke="#e6ca65" stroke-width="3" opacity="0.8"/>
+</svg>

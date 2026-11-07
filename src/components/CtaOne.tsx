@@ -1,24 +1,24 @@
 /* =========================================================================
    SECCIÓN 4: CTA (CALL TO ACTION 1)
-   Formulario interactivo de Admisión al Colegio Hogwarts de Magia y Hechicería.
-   Envío por Lechuza con conexión al backend Node.js (POST /api/admission)
-   y despliegue de la Carta Oficial sellada con cera roja.
+   Formulario interactivo de contacto y admisión al Mundo Mágico de Hogwarts.
+   Combina al 100% con la estética de la landing page, con accesibilidad
+   total (labels vinculados, contraste WCAG AAA, sin cookies de terceros)
+   y conexión con el servidor Node.js (POST /api/admission).
    ========================================================================= */
 
 import React, { useState } from 'react';
-import confetti from 'canvas-confetti';
-import { Send, Feather, CheckCircle, MapPin, Sparkles, Award } from 'lucide-react';
-import { AdmissionApplication, AdmissionResponse } from '../types';
+import { Send, Feather, Sparkles, MapPin, CheckCircle2 } from 'lucide-react';
+import { AdmissionApplication, AdmissionResponse, HouseId } from '../types';
 import { magicAudio } from '../audio';
 
 export const CtaOne: React.FC = () => {
-  const [formData, setFormData] = useState<AdmissionApplication>({
-    fullName: '',
-    age: 11,
-    pet: 'lechuza',
-    preferredHouse: 'indiferente',
-    address: 'Habitación del ático, Número 4 de Privet Drive'
-  });
+  const [nombre, setNombre] = useState('');
+  const [apellidos, setApellidos] = useState('');
+  const [correo, setCorreo] = useState('');
+  const [age, setAge] = useState(11);
+  const [pet, setPet] = useState<'lechuza' | 'gato' | 'sapo' | 'rata'>('lechuza');
+  const [preferredHouse, setPreferredHouse] = useState<HouseId | 'indiferente'>('indiferente');
+  const [address, setAddress] = useState('Habitación del ático, Número 4 de Privet Drive');
 
   const [loading, setLoading] = useState(false);
   const [letterResult, setLetterResult] = useState<AdmissionResponse['letter'] | null>(null);
@@ -26,33 +26,48 @@ export const CtaOne: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.fullName.trim()) {
-      setErrorMsg('Por favor escribe tu nombre de mago o bruja.');
+    if (!nombre.trim()) {
+      setErrorMsg('Por favor ingrese su nombre de mago o bruja.');
+      return;
+    }
+    if (!correo.trim() || !correo.includes('@')) {
+      setErrorMsg('Por favor ingrese una dirección de correo válida.');
       return;
     }
 
     setErrorMsg('');
     setLoading(true);
 
+    const payload: AdmissionApplication = {
+      nombre: nombre.trim(),
+      apellidos: apellidos.trim(),
+      correo: correo.trim(),
+      fullName: `${nombre.trim()} ${apellidos.trim()}`.trim(),
+      age,
+      pet,
+      preferredHouse,
+      address: address.trim() || `Correo: ${correo.trim()}`
+    };
+
     try {
       // Connect to Node.js Express backend
       const response = await fetch('/api/admission', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       let data: AdmissionResponse;
       if (response.ok) {
         data = await response.json();
       } else {
-        // Fallback calculation if backend port isn't reached directly
+        // Fallback calculation
         data = {
           success: true,
           message: 'Carta emitida con éxito por la lechuza de guardia.',
           letter: {
-            recipient: formData.fullName,
-            location: formData.address,
+            recipient: payload.fullName,
+            location: payload.address,
             deliveryMethod: 'Lechuza Real de Correos Mágicos',
             deputyHeadmistress: 'Minerva McGonagall (Subdirectora)',
             platform: 'Andén 9¾, Estación de King\'s Cross, Londres',
@@ -71,19 +86,21 @@ export const CtaOne: React.FC = () => {
       setLetterResult(data.letter);
       magicAudio.playOwlDelivery();
 
-      // Golden Sparks Confetti
-      confetti({
-        particleCount: 80,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#e6ca65', '#ffd700', '#ffffff', '#740001']
-      });
+      // Dynamic load of confetti
+      try {
+        const { default: confetti } = await import('canvas-confetti');
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#e6ca65', '#ffd700', '#ffffff', '#740001']
+        });
+      } catch {}
 
-    } catch (err) {
-      // Offline / fallback graceful response
+    } catch {
       setLetterResult({
-        recipient: formData.fullName,
-        location: formData.address,
+        recipient: payload.fullName,
+        location: payload.address,
         deliveryMethod: 'Lechuza Nival Rápida',
         deputyHeadmistress: 'Minerva McGonagall (Subdirectora)',
         platform: 'Andén 9¾, King\'s Cross',
@@ -112,16 +129,16 @@ export const CtaOne: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#740001]/40 border border-[#e6ca65]/40 text-xs font-semibold text-[#ffd700] uppercase tracking-widest mb-3">
             <Feather size={14} />
-            <span>Plataforma Oficial de Admisiones</span>
+            <span>Contacto & Admisión Oficial</span>
           </div>
           <h2 className="font-cinzel text-3xl sm:text-5xl font-bold text-white mb-4">
-            Solicita tu <span className="text-gold-gradient">Carta de Hogwarts</span>
+            Nos encantaría <span className="text-gold-gradient">escucharte</span>
           </h2>
-          <p className="text-sm sm:text-base text-[#baa990] max-w-xl mx-auto font-body">
-            Completa tus datos para que la Pluma de Aceptación registre tu nombre y una lechuza entregue tu carta oficial sellada con lacre de cera.
+          <p className="text-base text-[#e5ded0] max-w-xl mx-auto font-body leading-relaxed">
+            Llena el formulario y nos pondremos en contacto contigo lo antes posible por lechuza mensajera.
           </p>
         </div>
 
@@ -135,13 +152,13 @@ export const CtaOne: React.FC = () => {
             </div>
 
             <div className="text-center pb-6 border-b-2 border-[#1a1711]/20">
-              <div className="text-2xl font-bold tracking-widest uppercase font-cinzel">
+              <h3 className="text-2xl font-bold tracking-widest uppercase font-cinzel text-[#1a1711]">
                 COLEGIO HOGWARTS DE MAGIA Y HECHICERÍA
-              </div>
-              <div className="text-xs tracking-wider uppercase text-[#3a3225] mt-1 font-sans">
+              </h3>
+              <p className="text-xs tracking-wider uppercase text-[#3a3225] mt-1 font-sans">
                 Director: Albus Dumbledore <br />
-                (Orden de Merlín, Primera Clase, Gran Hechicero, Jefe de Magos, Confederación Internacional de Magos)
-              </div>
+                (Orden de Merlín, Primera Clase, Gran Hechicero, Confederación Internacional de Magos)
+              </p>
             </div>
 
             <div className="mt-8 space-y-4 text-base sm:text-lg leading-relaxed text-[#1a1711]">
@@ -188,82 +205,100 @@ export const CtaOne: React.FC = () => {
                   setLetterResult(null);
                   magicAudio.playWandSpark();
                 }}
-                className="px-6 py-2.5 rounded-lg bg-[#1a1711] text-[#f7f1df] hover:bg-[#332c1f] text-xs uppercase tracking-wider font-semibold transition-all"
+                className="px-6 py-2.5 rounded-lg bg-[#1a1711] text-[#f7f1df] hover:bg-[#332c1f] text-xs uppercase tracking-wider font-semibold transition-all shadow-md"
               >
-                Solicitar Otra Carta
+                Enviar Otro Mensaje
               </button>
             </div>
           </div>
         ) : (
-          /* Application Form */
-          <div className="parchment-card rounded-2xl p-8 sm:p-10 border border-[#e6ca65]/30 shadow-2xl relative">
+          /* Form in Full Hogwarts Theme Matching the Landing Page */
+          <div className="parchment-card rounded-2xl p-8 sm:p-10 border border-[#e6ca65]/40 shadow-2xl relative">
+            
             <form onSubmit={handleSubmit} className="space-y-6">
               
               {errorMsg && (
-                <div className="p-3 rounded-lg bg-red-950/60 border border-red-500/50 text-red-200 text-sm">
+                <div className="p-3 rounded-lg bg-red-950/70 border border-red-500/50 text-red-200 text-sm font-medium">
                   {errorMsg}
                 </div>
               )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                {/* Full Name */}
+              {/* Row 1: Nombre y Apellidos */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider font-semibold text-[#e6ca65] mb-2 font-cinzel">
-                    Nombre Completo de Mago / Bruja *
+                  <label htmlFor="form-nombre" className="block text-xs uppercase tracking-wider font-semibold text-[#fbf0b9] mb-2 font-cinzel">
+                    Nombre *
                   </label>
                   <input
+                    id="form-nombre"
                     type="text"
                     required
-                    placeholder="Ej. Harry James Potter"
-                    value={formData.fullName}
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#0e0c15] border border-[#e6ca65]/30 text-white placeholder-gray-500 focus:outline-none focus:border-[#e6ca65] focus:ring-1 focus:ring-[#e6ca65] text-sm"
+                    placeholder="Ej. Harry"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl bg-[#0e0c15] border border-[#e6ca65]/35 text-white placeholder-gray-400 focus:outline-none focus:border-[#e6ca65] focus:ring-1 focus:ring-[#e6ca65] text-sm transition-all"
                   />
                 </div>
 
-                {/* Age */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wider font-semibold text-[#e6ca65] mb-2 font-cinzel">
-                    Edad del Estudiante (Mínimo 10 años) *
+                  <label htmlFor="form-apellidos" className="block text-xs uppercase tracking-wider font-semibold text-[#fbf0b9] mb-2 font-cinzel">
+                    Apellidos
                   </label>
                   <input
-                    type="number"
-                    min="10"
-                    max="120"
-                    required
-                    value={formData.age}
-                    onChange={(e) => setFormData({ ...formData, age: parseInt(e.target.value) || 11 })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#0e0c15] border border-[#e6ca65]/30 text-white placeholder-gray-500 focus:outline-none focus:border-[#e6ca65] focus:ring-1 focus:ring-[#e6ca65] text-sm"
+                    id="form-apellidos"
+                    type="text"
+                    placeholder="Ej. Potter"
+                    value={apellidos}
+                    onChange={(e) => setApellidos(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl bg-[#0e0c15] border border-[#e6ca65]/35 text-white placeholder-gray-400 focus:outline-none focus:border-[#e6ca65] focus:ring-1 focus:ring-[#e6ca65] text-sm transition-all"
                   />
                 </div>
+              </div>
 
-                {/* Pet Choice */}
+              {/* Row 2: Correo* */}
+              <div>
+                <label htmlFor="form-correo" className="block text-xs uppercase tracking-wider font-semibold text-[#fbf0b9] mb-2 font-cinzel">
+                  Correo *
+                </label>
+                <input
+                  id="form-correo"
+                  type="email"
+                  required
+                  placeholder="ejemplo@correo.com"
+                  value={correo}
+                  onChange={(e) => setCorreo(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl bg-[#0e0c15] border border-[#e6ca65]/35 text-white placeholder-gray-400 focus:outline-none focus:border-[#e6ca65] focus:ring-1 focus:ring-[#e6ca65] text-sm transition-all"
+                />
+              </div>
+
+              {/* Row 3: Mascota y Preferencia de Casa */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider font-semibold text-[#e6ca65] mb-2 font-cinzel">
+                  <label htmlFor="form-pet" className="block text-xs uppercase tracking-wider font-semibold text-[#fbf0b9] mb-2 font-cinzel">
                     Mascota Acompañante
                   </label>
                   <select
-                    value={formData.pet}
-                    onChange={(e) => setFormData({ ...formData, pet: e.target.value as any })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#0e0c15] border border-[#e6ca65]/30 text-white focus:outline-none focus:border-[#e6ca65] text-sm"
+                    id="form-pet"
+                    value={pet}
+                    onChange={(e) => setPet(e.target.value as any)}
+                    className="w-full px-4 py-3 rounded-xl bg-[#0e0c15] border border-[#e6ca65]/35 text-white focus:outline-none focus:border-[#e6ca65] text-sm"
                   >
                     <option value="lechuza">🦉 Lechuza (Ideal para correspondencia)</option>
                     <option value="gato">🐱 Gato (Afinidad mágica milenaria)</option>
-                    <option value="sapo">🐸 Sapo (Tradición de pocioneros antiguos)</option>
+                    <option value="sapo">🐸 Sapo (Tradición de pocioneros)</option>
                     <option value="rata">🐀 Rata (Discreta y astuta)</option>
                   </select>
                 </div>
 
-                {/* Preferred House */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wider font-semibold text-[#e6ca65] mb-2 font-cinzel">
+                  <label htmlFor="form-house" className="block text-xs uppercase tracking-wider font-semibold text-[#fbf0b9] mb-2 font-cinzel">
                     Preferencia de Casa
                   </label>
                   <select
-                    value={formData.preferredHouse}
-                    onChange={(e) => setFormData({ ...formData, preferredHouse: e.target.value as any })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#0e0c15] border border-[#e6ca65]/30 text-white focus:outline-none focus:border-[#e6ca65] text-sm"
+                    id="form-house"
+                    value={preferredHouse}
+                    onChange={(e) => setPreferredHouse(e.target.value as any)}
+                    className="w-full px-4 py-3 rounded-xl bg-[#0e0c15] border border-[#e6ca65]/35 text-white focus:outline-none focus:border-[#e6ca65] text-sm"
                   >
                     <option value="indiferente">✨ Que decida el Sombrero Seleccionador</option>
                     <option value="gryffindor">🦁 Gryffindor (Valor y Coraje)</option>
@@ -272,48 +307,54 @@ export const CtaOne: React.FC = () => {
                     <option value="hufflepuff">🦡 Hufflepuff (Lealtad y Honestidad)</option>
                   </select>
                 </div>
-
               </div>
 
-              {/* Delivery Address */}
+              {/* Row 4: Lugar de entrega */}
               <div>
-                <label className="block text-xs uppercase tracking-wider font-semibold text-[#e6ca65] mb-2 font-cinzel">
-                  Lugar Exacto de Entrega para la Lechuza *
+                <label htmlFor="form-address" className="block text-xs uppercase tracking-wider font-semibold text-[#fbf0b9] mb-2 font-cinzel">
+                  Lugar de Entrega para la Lechuza
                 </label>
                 <div className="relative">
-                  <MapPin className="absolute left-3 top-3.5 w-4 h-4 text-[#e6ca65]" />
+                  <MapPin className="absolute left-3.5 top-3.5 w-4 h-4 text-[#e6ca65]" />
                   <input
+                    id="form-address"
                     type="text"
-                    required
                     placeholder="Ej. Alacena bajo las escaleras, Privet Drive 4, Surrey"
-                    value={formData.address}
-                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0e0c15] border border-[#e6ca65]/30 text-white placeholder-gray-500 focus:outline-none focus:border-[#e6ca65] text-sm"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0e0c15] border border-[#e6ca65]/35 text-white placeholder-gray-400 focus:outline-none focus:border-[#e6ca65] text-sm"
                   />
                 </div>
-                <p className="text-[11px] text-gray-400 mt-1">
-                  La lechuza encontrará la ventana o chimenea indicada incluso en caso de encierro muggle.
-                </p>
               </div>
 
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full py-4 rounded-xl font-cinzel text-base font-bold uppercase tracking-wider text-[#0e0c12] bg-gradient-to-r from-[#ffd700] via-[#e6ca65] to-[#c49e29] hover:shadow-[0_0_30px_rgba(230,202,101,0.5)] transition-all flex items-center justify-center gap-3 disabled:opacity-50"
-              >
-                {loading ? (
-                  <>
-                    <Sparkles className="w-5 h-5 animate-spin" />
-                    <span>Convocando lechuza mensajera...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    <span>Enviar Solicitud con Lechuza Oficial</span>
-                  </>
-                )}
-              </button>
+              {/* Submit Button ("Enviar") - Designed to match the Harry Potter theme perfectly */}
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-4 rounded-xl font-cinzel text-base font-bold uppercase tracking-wider text-[#0e0c12] bg-gradient-to-r from-[#ffd700] via-[#e6ca65] to-[#c49e29] hover:shadow-[0_0_30px_rgba(230,202,101,0.5)] transition-all flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer active:scale-[0.99]"
+                >
+                  {loading ? (
+                    <>
+                      <Sparkles className="w-5 h-5 animate-spin" />
+                      <span>Enviando con lechuza mensajera...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      <span>Enviar</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* Magical security footnote (replaces the HubSpot advertising footer) */}
+              <div className="pt-2 text-center text-xs text-[#a39887] border-t border-[#e6ca65]/15">
+                <span className="inline-flex items-center gap-1.5">
+                  <CheckCircle2 size={13} className="text-[#e6ca65]" />
+                  <span>Tus datos están protegidos bajo el Estatuto Internacional del Secreto Mágico. Sin cookies de terceros.</span>
+                </span>
+              </div>
 
             </form>
           </div>

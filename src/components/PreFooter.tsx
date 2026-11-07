@@ -4,21 +4,11 @@
    suscripción por lechuza matutina y conexión a Node.js (POST /api/newsletter).
    ========================================================================= */
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Mail, CheckCircle2, Send, Sparkles, Feather } from 'lucide-react';
 import { magicAudio } from '../audio';
 
 export const PreFooter: React.FC = () => {
-  useEffect(() => {
-    if (document.getElementById('hubspot-forms-embed')) return;
-
-    const script = document.createElement('script');
-    script.id = 'hubspot-forms-embed';
-    script.src = 'https://js.hsforms.net/forms/embed/52188892.js';
-    script.defer = true;
-    document.body.appendChild(script);
-  }, []);
-
   const [email, setEmail] = useState('');
   const [owlChoice, setOwlChoice] = useState<'lechuza-real' | 'buho-nival' | 'pigmeo'>('lechuza-real');
   const [loading, setLoading] = useState(false);
@@ -60,7 +50,7 @@ export const PreFooter: React.FC = () => {
   };
 
   return (
-    <section id="inscripcion" className="relative py-20 bg-gradient-to-b from-[#0a0910] via-[#14101e] to-[#07060b] border-t border-[#e6ca65]/20 overflow-hidden">
+    <section className="relative py-20 bg-gradient-to-b from-[#0a0910] via-[#14101e] to-[#07060b] border-t border-[#e6ca65]/20 overflow-hidden">
       
       {/* Decorative Golden Orbs */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#e6ca65]/5 rounded-full blur-3xl pointer-events-none" />
@@ -74,9 +64,9 @@ export const PreFooter: React.FC = () => {
             <div className="text-[10px] sm:text-xs font-serif tracking-[0.25em] text-[#e6ca65] uppercase font-bold">
               ★ EDICIÓN ESPECIAL DEL MINISTERIO DE MAGIA ★
             </div>
-            <h3 className="font-cinzel text-3xl sm:text-5xl font-black text-gold-gradient tracking-wider mt-1">
+            <h2 className="font-cinzel text-3xl sm:text-5xl font-black text-gold-gradient tracking-wider mt-1">
               EL PROFETA
-            </h3>
+            </h2>
             <div className="flex justify-between items-center text-[10px] text-[#9e917d] mt-2 px-4 uppercase font-serif">
               <span>Londres, Reino Unido</span>
               <span>Precio: 1 Sickle, 2 Knuts</span>
@@ -84,9 +74,9 @@ export const PreFooter: React.FC = () => {
             </div>
           </div>
 
-          <h4 className="font-cinzel text-xl sm:text-2xl font-bold text-white mb-3">
+          <h3 className="font-cinzel text-xl sm:text-2xl font-bold text-white mb-3">
             Suscríbete a las Crónicas del Mundo Mágico
-          </h4>
+          </h3>
           <p className="text-sm text-[#baa990] max-w-xl mx-auto mb-8 font-body">
             Entérate antes que nadie de los resultados de la Liga de Quidditch, nuevos decretos de Hogwarts, alertas de criaturas mágicas y ofertas en Flourish & Blotts.
           </p>
@@ -112,10 +102,13 @@ export const PreFooter: React.FC = () => {
               
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="relative flex-1">
+                  <label htmlFor="prophet-email" className="sr-only">Correo electrónico mágico</label>
                   <Mail className="absolute left-3.5 top-3.5 w-4 h-4 text-[#e6ca65]" />
                   <input
+                    id="prophet-email"
                     type="email"
                     required
+                    aria-label="Correo electrónico para suscripción a El Profeta"
                     placeholder="tu-correo-magico@hogwarts.wiz"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -172,13 +165,6 @@ export const PreFooter: React.FC = () => {
 
             </form>
           )}
-
-          <div
-            className="hs-form-frame mx-auto max-w-lg text-left mt-8"
-            data-region="na1"
-            data-form-id="a163e4c1-fcc2-4749-9f25-0296c0d98bd5"
-            data-portal-id="52188892"
-          />
 
         </div>
 

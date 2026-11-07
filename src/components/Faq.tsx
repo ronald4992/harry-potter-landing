@@ -78,6 +78,8 @@ export const Faq: React.FC = () => {
               >
                 <button
                   onClick={() => toggleItem(faq.id)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-ans-${faq.id}`}
                   className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 group"
                 >
                   <div className="flex items-center gap-3">
@@ -92,7 +94,7 @@ export const Faq: React.FC = () => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 pt-1 text-sm sm:text-base text-[#c4baa7] font-body leading-relaxed border-t border-[#e6ca65]/10 animate-fadeIn">
+                  <div id={`faq-ans-${faq.id}`} className="px-5 sm:px-6 pb-6 pt-1 text-sm sm:text-base text-[#c4baa7] font-body leading-relaxed border-t border-[#e6ca65]/10 animate-fadeIn">
                     <p>{faq.answer}</p>
                     <div className="mt-3 flex items-center gap-2 text-[11px] text-[#e6ca65]">
                       <Sparkles size={12} />

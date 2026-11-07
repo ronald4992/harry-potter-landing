@@ -92,6 +92,7 @@ export const Header: React.FC<HeaderProps> = ({
                     key={h}
                     onClick={() => handleHouseChange(h)}
                     title={`Ver estilo de ${HOUSES[h].name}`}
+                    aria-label={`Ver estilo de la casa ${HOUSES[h].name}`}
                     className={`w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all ${
                       isSelected
                         ? 'bg-[#e6ca65] text-[#0c0b12] font-bold scale-110 shadow-md ring-2 ring-[#e6ca65]/50'
@@ -108,6 +109,7 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={onToggleMusic}
               title={isMusicPlaying ? 'Silenciar melodía de Hogwarts' : 'Reproducir melodía mágica'}
+              aria-label={isMusicPlaying ? 'Silenciar melodía de Hogwarts' : 'Reproducir melodía mágica'}
               className={`p-2 rounded-full border transition-all ${
                 isMusicPlaying
                   ? 'border-[#e6ca65] bg-[#e6ca65]/20 text-[#e6ca65] animate-pulse'
@@ -132,12 +134,14 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={onToggleMusic}
+              aria-label={isMusicPlaying ? 'Silenciar música' : 'Reproducir música'}
               className="p-2 text-gray-400 hover:text-[#e6ca65]"
             >
               {isMusicPlaying ? <Volume2 size={20} /> : <VolumeX size={20} />}
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
               className="p-2 text-gray-300 hover:text-[#e6ca65]"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

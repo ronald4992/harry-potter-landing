@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" width="88" height="88">
+  <defs>
+    <linearGradient id="dumb-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a1f4d"/>
+      <stop offset="100%" stop-color="#100b24"/>
+    </linearGradient>
+  </defs>
+  <rect width="88" height="88" rx="44" fill="url(#dumb-bg)"/>
+  <!-- Pointed Hat -->
+  <polygon points="44,8 24,36 64,36" fill="#4b2e83"/>
+  <ellipse cx="44" cy="36" rx="24" ry="5" fill="#361f60"/>
+  <circle cx="44" cy="8" r="2.5" fill="#e6ca65"/>
+  <!-- Face -->
+  <ellipse cx="44" cy="46" rx="16" ry="18" fill="#fbd5b5"/>
+  <!-- Half-moon glasses -->
+  <path d="M35 44 A 4 4 0 0 0 43 44" stroke="#e6ca65" stroke-width="1.6" fill="none"/>
+  <path d="M45 44 A 4 4 0 0 0 53 44" stroke="#e6ca65" stroke-width="1.6" fill="none"/>
+  <line x1="43" y1="44" x2="45" y2="44" stroke="#e6ca65" stroke-width="1.6"/>
+  <!-- Eyes -->
+  <circle cx="39" cy="43" r="1.8" fill="#2d5282"/>
+  <circle cx="49" cy="43" r="1.8" fill="#2d5282"/>
+  <!-- Long silver beard -->
+  <path d="M30 48 Q44 94 44 94 Q44 94 58 48 C54 48 50 56 44 56 C38 56 34 48 30 48 Z" fill="#e2e8f0"/>
+  <!-- Robe -->
+  <path d="M22 88 L34 68 L54 68 L66 88 Z" fill="#603893"/>
+  <!-- Golden border -->
+  <circle cx="44" cy="44" r="42" fill="none" stroke="#e6ca65" stroke-width="3" opacity="0.8"/>
+</svg>

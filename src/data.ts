@@ -133,7 +133,7 @@ export const TESTIMONIALS: Testimonial[] = [
     content: 'Hogwarts no solo me enseñó cómo dominar la teoría de encantamientos; me dio amigos por los que arriesgarlo todo y una biblioteca en la que cualquier enigma del universo tiene respuesta.',
     favoriteSpell: 'Alohomora / Time-Turner',
     stars: 5,
-    avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80'
+    avatarUrl: '/avatars/hermione.svg'
   },
   {
     id: 't-2',
@@ -143,7 +143,7 @@ export const TESTIMONIALS: Testimonial[] = [
     content: 'La ayuda siempre será otorgada en Hogwarts a quienes la pidan. Aquí la magia no reside en la madera ni en la sangre, sino en las elecciones que tomamos cada día.',
     favoriteSpell: 'Fuego de Fénix & Partis Temporus',
     stars: 5,
-    avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=250&q=80'
+    avatarUrl: '/avatars/dumbledore.svg'
   },
   {
     id: 't-3',
@@ -153,7 +153,7 @@ export const TESTIMONIALS: Testimonial[] = [
     content: 'En la torre de Ravenclaw aprendí que ser diferente no es una rareza, sino un superpoder. Las criaturas que nadie más ve son a menudo las más amables.',
     favoriteSpell: 'Expecto Patronum (Liebre)',
     stars: 5,
-    avatarUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=250&q=80'
+    avatarUrl: '/avatars/luna.svg'
   },
   {
     id: 't-4',
@@ -163,7 +163,7 @@ export const TESTIMONIALS: Testimonial[] = [
     content: 'Llegué tembloroso y perdiendo mi sapo Trevor. Los maestros tuvieron paciencia conmigo y descubrí mi vocación entre Mandrágoras y la espada de Godric.',
     favoriteSpell: 'Herbivicus & Petrificus Totalus',
     stars: 5,
-    avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=250&q=80'
+    avatarUrl: '/avatars/neville.svg'
   },
   {
     id: 't-5',
@@ -173,7 +173,7 @@ export const TESTIMONIALS: Testimonial[] = [
     content: 'Al principio creí que no encajaría teniendo tantos hermanos brillantes, pero los banquetes del Gran Comedor y la emoción de ganar la Copa de Quidditch valieron cada segundo.',
     favoriteSpell: 'Wingardium Leviosa (con acento en el SA)',
     stars: 5,
-    avatarUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=250&q=80'
+    avatarUrl: '/avatars/ron.svg'
   },
   {
     id: 't-6',
@@ -183,7 +183,7 @@ export const TESTIMONIALS: Testimonial[] = [
     content: 'Les enseñaré cómo embotellar la fama, cocinar la gloria e incluso poner un tapón a la muerte... siempre y cuando no sean tan tontos como la media de alumnos que me envían.',
     favoriteSpell: 'Sectumsempra / Oclumancia',
     stars: 5,
-    avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=250&q=80'
+    avatarUrl: '/avatars/snape.svg'
   }
 ];
 

@@ -6,7 +6,6 @@
    ========================================================================= */
 
 import React, { useState } from 'react';
-import confetti from 'canvas-confetti';
 import { Compass, Sparkles, RefreshCw, CheckCircle2, Award } from 'lucide-react';
 import { QUIZ_QUESTIONS, HOUSES } from '../data';
 import { HouseId } from '../types';
@@ -77,13 +76,13 @@ export const CtaTwo: React.FC<CtaTwoProps> = ({ onHouseAssigned }) => {
         };
       }
 
-      setTimeout(() => {
+      setTimeout(async () => {
         setAssignedResult(data);
         setIsDeliberating(false);
         onHouseAssigned(data.house as HouseId);
 
-        // Confetti matching house colors
-        const colors = data.house === 'gryffindor'
+        // Confetti matching house colors (dynamically imported)
+        const houseColors = data.house === 'gryffindor'
           ? ['#740001', '#eeba30', '#ffffff']
           : data.house === 'slytherin'
           ? ['#1a472a', '#aaaaaa', '#ffffff']
@@ -91,12 +90,15 @@ export const CtaTwo: React.FC<CtaTwoProps> = ({ onHouseAssigned }) => {
           ? ['#0e1a40', '#946b2d', '#ffffff']
           : ['#ecb939', '#372e29', '#ffffff'];
 
-        confetti({
-          particleCount: 100,
-          spread: 80,
-          origin: { y: 0.6 },
-          colors
-        });
+        try {
+          const { default: confetti } = await import('canvas-confetti');
+          confetti({
+            particleCount: 100,
+            spread: 80,
+            origin: { y: 0.6 },
+            colors: houseColors
+          });
+        } catch {}
       }, 1400);
 
     } catch (e) {

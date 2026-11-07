@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" width="88" height="88">
+  <defs>
+    <linearGradient id="hermione-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#740001"/>
+      <stop offset="100%" stop-color="#2a0000"/>
+    </linearGradient>
+    <linearGradient id="hermione-hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8a532e"/>
+      <stop offset="100%" stop-color="#542e14"/>
+    </linearGradient>
+  </defs>
+  <rect width="88" height="88" rx="44" fill="url(#hermione-bg)"/>
+  <!-- Hair back -->
+  <ellipse cx="44" cy="46" rx="28" ry="30" fill="url(#hermione-hair)"/>
+  <!-- Face -->
+  <ellipse cx="44" cy="44" rx="17" ry="20" fill="#fddcb8"/>
+  <!-- Hair front curls -->
+  <path d="M22 36 C22 18, 66 18, 66 36 C66 48, 60 56, 56 60 C53 48, 49 32, 44 32 C39 32, 35 48, 32 60 C28 56, 22 48, 22 36 Z" fill="url(#hermione-hair)"/>
+  <!-- Eyes -->
+  <ellipse cx="38" cy="42" rx="2.5" ry="3" fill="#4a3018"/>
+  <ellipse cx="50" cy="42" rx="2.5" ry="3" fill="#4a3018"/>
+  <!-- Sparkle in eyes -->
+  <circle cx="39" cy="41" r="0.9" fill="#ffffff"/>
+  <circle cx="51" cy="41" r="0.9" fill="#ffffff"/>
+  <!-- Smile -->
+  <path d="M40 50 Q44 54 48 50" stroke="#b36952" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- Scarf / Gryffindor Collar -->
+  <path d="M30 68 L44 60 L58 68 L52 88 L36 88 Z" fill="#740001"/>
+  <path d="M38 68 L44 63 L50 68 L48 76 L40 76 Z" fill="#eeba30"/>
+  <!-- Golden border -->
+  <circle cx="44" cy="44" r="42" fill="none" stroke="#e6ca65" stroke-width="3" opacity="0.8"/>
+</svg>

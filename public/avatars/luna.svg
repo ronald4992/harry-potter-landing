@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" width="88" height="88">
+  <defs>
+    <linearGradient id="luna-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e1a40"/>
+      <stop offset="100%" stop-color="#050a1c"/>
+    </linearGradient>
+  </defs>
+  <rect width="88" height="88" rx="44" fill="url(#luna-bg)"/>
+  <!-- Platinum blonde hair back -->
+  <ellipse cx="44" cy="48" rx="27" ry="32" fill="#fff5c0"/>
+  <!-- Face -->
+  <ellipse cx="44" cy="44" rx="16" ry="19" fill="#fde6ce"/>
+  <!-- Luna's Spectrespecs (Funky pink & cyan glasses) -->
+  <path d="M26 38 L38 34 L42 40 L38 46 L26 44 Z" fill="#ec4899" stroke="#db2777" stroke-width="1.5"/>
+  <circle cx="34" cy="40" r="4.5" fill="#38bdf8" opacity="0.8"/>
+  <path d="M62 38 L50 34 L46 40 L50 46 L62 44 Z" fill="#ec4899" stroke="#db2777" stroke-width="1.5"/>
+  <circle cx="54" cy="40" r="4.5" fill="#f43f5e" opacity="0.8"/>
+  <line x1="42" y1="40" x2="46" y2="40" stroke="#db2777" stroke-width="2"/>
+  <!-- Hair strands in front -->
+  <path d="M22 42 C20 60 26 76 32 78 C28 66 28 50 32 40 Z" fill="#fef08a"/>
+  <path d="M66 42 C68 60 62 76 56 78 C60 66 60 50 56 40 Z" fill="#fef08a"/>
+  <!-- Dreamy smile -->
+  <path d="M41 53 Q44 56 47 53" stroke="#e07a7a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Ravenclaw tie / collar -->
+  <path d="M34 68 L44 62 L54 68 L48 88 L40 88 Z" fill="#005a9c"/>
+  <polygon points="44,65 42,75 46,75" fill="#946b2d"/>
+  <!-- Golden border -->
+  <circle cx="44" cy="44" r="42" fill="none" stroke="#e6ca65" stroke-width="3" opacity="0.8"/>
+</svg>

@@ -140,6 +140,7 @@ export const Explicacion: React.FC = () => {
                     <button
                       key={spell.name}
                       onClick={() => handleCastSpell(spell)}
+                      aria-label={`Conjurar hechizo ${spell.name}`}
                       className={`px-4 py-2.5 rounded-xl font-cinzel text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 ${
                         isCurrent
                           ? 'bg-[#e6ca65] text-[#0e0c15] shadow-[0_0_20px_#e6ca65]'

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" width="88" height="88">
+  <defs>
+    <linearGradient id="ron-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#740001"/>
+      <stop offset="100%" stop-color="#300000"/>
+    </linearGradient>
+    <linearGradient id="ginger-hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="100%" stop-color="#b43403"/>
+    </linearGradient>
+  </defs>
+  <rect width="88" height="88" rx="44" fill="url(#ron-bg)"/>
+  <!-- Vibrant ginger hair back -->
+  <ellipse cx="44" cy="40" rx="24" ry="22" fill="url(#ginger-hair)"/>
+  <!-- Face -->
+  <ellipse cx="44" cy="46" rx="17" ry="19" fill="#fed7aa"/>
+  <!-- Messy ginger front hair -->
+  <path d="M24 38 C28 26, 60 26, 64 38 C58 32, 50 36, 44 34 C38 36, 30 32, 24 38 Z" fill="url(#ginger-hair)"/>
+  <path d="M38 32 L44 42 L48 33 Z" fill="url(#ginger-hair)"/>
+  <!-- Freckles -->
+  <circle cx="34" cy="48" r="0.9" fill="#c2572b"/>
+  <circle cx="36" cy="49" r="0.9" fill="#c2572b"/>
+  <circle cx="52" cy="49" r="0.9" fill="#c2572b"/>
+  <circle cx="54" cy="48" r="0.9" fill="#c2572b"/>
+  <!-- Eyes -->
+  <circle cx="37" cy="44" r="2.2" fill="#0284c7"/>
+  <circle cx="51" cy="44" r="2.2" fill="#0284c7"/>
+  <!-- Smirk / smile -->
+  <path d="M39 53 Q43 56 49 52" stroke="#b95b36" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- Weasley knitted sweater with 'R' -->
+  <path d="M26 68 L44 60 L62 68 L56 88 L32 88 Z" fill="#831843"/>
+  <text x="44" y="78" font-family="serif" font-weight="bold" font-size="12" fill="#facc15" text-anchor="middle">R</text>
+  <!-- Golden border -->
+  <circle cx="44" cy="44" r="42" fill="none" stroke="#e6ca65" stroke-width="3" opacity="0.8"/>
+</svg>

@@ -56,25 +56,24 @@ app.get('/api/health', (_req: Request, res: Response) => {
 // 2. Admission Application (CTA 1)
 app.post('/api/admission', (req: Request, res: Response) => {
   try {
-    const { fullName, age, pet, preferredHouse, address } = req.body;
+    const { fullName, nombre, apellidos, correo, email, age, pet, preferredHouse, address } = req.body;
 
-    if (!fullName || typeof fullName !== 'string' || fullName.trim().length < 2) {
-      return res.status(400).json({ success: false, error: 'Por favor ingrese un nombre de mago/bruja válido.' });
+    const resolvedName = (fullName || `${nombre || ''} ${apellidos || ''}`).trim();
+    if (!resolvedName || resolvedName.length < 2) {
+      return res.status(400).json({ success: false, error: 'Por favor ingrese su nombre y apellidos.' });
     }
 
-    const ageNum = Number(age);
-    if (isNaN(ageNum) || ageNum < 10) {
-      return res.status(400).json({ success: false, error: 'La edad mínima para recibir la lechuza de Hogwarts es de 10 años.' });
-    }
+    const resolvedEmail = (correo || email || '').trim();
+    const ageNum = Number(age) || 11;
 
     const admissionId = `HOG-2026-${Math.floor(1000 + Math.random() * 9000)}`;
     const newRecord: StoredAdmission = {
       id: admissionId,
-      fullName: fullName.trim(),
+      fullName: resolvedName,
       age: ageNum,
       pet: pet || 'lechuza',
       preferredHouse: preferredHouse || 'indiferente',
-      address: address?.trim() || 'Dormitorio del ático, Habitación mágica',
+      address: address?.trim() || (resolvedEmail ? `Bandeja de entrada: ${resolvedEmail}` : 'Dormitorio del ático, Habitación mágica'),
       registeredAt: new Date().toISOString(),
       status: 'Aceptado'
     };
@@ -218,9 +217,19 @@ app.get('/api/stats', (_req: Request, res: Response) => {
   });
 });
 
-// Serve frontend build if in production
+// Serve frontend build if in production with optimal cache headers
 const distPath = path.resolve(__dirname, '../../dist');
-app.use(express.static(distPath));
+app.use(express.static(distPath, {
+  maxAge: '1y',
+  etag: true,
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+    } else {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    }
+  }
+}));
 
 // SPA fallback route for Express v5
 app.use((_req: Request, res: Response) => {

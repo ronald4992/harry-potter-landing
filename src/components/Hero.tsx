@@ -28,9 +28,9 @@ export const Hero: React.FC<HeroProps> = ({ currentHouse }) => {
             backgroundImage: `radial-gradient(circle at 50% 35%, ${house.accentHex}40 0%, transparent 60%)`
           }}
         />
-        {/* Mystic starry rings */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full border border-[#e6ca65]/10 animate-spin" style={{ animationDuration: '120s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[950px] rounded-full border border-dashed border-[#e6ca65]/10 animate-spin" style={{ animationDuration: '180s', animationDirection: 'reverse' }} />
+        {/* Mystic starry rings - GPU composited */}
+        <div className="absolute top-1/2 left-1/2 w-[700px] h-[700px] rounded-full border border-[#e6ca65]/10 mystic-ring-1" />
+        <div className="absolute top-1/2 left-1/2 w-[950px] h-[950px] rounded-full border border-dashed border-[#e6ca65]/10 mystic-ring-2" />
       </div>
 
       {/* Floating Hogwarts Candles */}

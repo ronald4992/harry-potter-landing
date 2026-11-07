@@ -59,6 +59,7 @@ export const Footer: React.FC = () => {
             <div className="pt-2">
               <button
                 onClick={toggleMarauder}
+                aria-label={marauderActive ? 'Ocultar el Mapa del Merodeador' : 'Revelar el Mapa del Merodeador'}
                 className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-serif text-[#e6ca65] bg-[#161224] border border-[#e6ca65]/30 hover:border-[#e6ca65] transition-all hover:bg-[#201a33]"
               >
                 <Footprints size={14} />
@@ -69,9 +70,9 @@ export const Footer: React.FC = () => {
 
           {/* Column 2: Navegación Rápida */}
           <div>
-            <h4 className="font-cinzel text-xs font-bold text-white uppercase tracking-widest mb-4">
+            <p className="font-cinzel text-xs font-bold text-white uppercase tracking-widest mb-4">
               Explorar
-            </h4>
+            </p>
             <ul className="space-y-2.5 text-xs">
               <li>
                 <a href="#hero" className="hover:text-[#e6ca65] transition-colors">Inicio & Bienvenida</a>
@@ -96,9 +97,9 @@ export const Footer: React.FC = () => {
 
           {/* Column 3: Las Cuatro Casas */}
           <div>
-            <h4 className="font-cinzel text-xs font-bold text-white uppercase tracking-widest mb-4">
+            <p className="font-cinzel text-xs font-bold text-white uppercase tracking-widest mb-4">
               Las 4 Casas
-            </h4>
+            </p>
             <ul className="space-y-2.5 text-xs">
               {(Object.keys(HOUSES) as HouseId[]).map((hId) => (
                 <li key={hId}>
@@ -111,7 +112,7 @@ export const Footer: React.FC = () => {
                   </a>
                 </li>
               ))}
-              <li className="pt-1 text-[#6a6053]">
+              <li className="pt-1 text-[#b5a998]">
                 <span>Copa de las Casas: En disputa</span>
               </li>
             </ul>
@@ -119,38 +120,29 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Estatuto & Ministerio */}
           <div>
-            <h4 className="font-cinzel text-xs font-bold text-white uppercase tracking-widest mb-4">
+            <p className="font-cinzel text-xs font-bold text-white uppercase tracking-widest mb-4">
               Estatutos Mágicos
-            </h4>
+            </p>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <span className="text-[#877c6c]">Estatuto Internacional del Secreto Mágico (1689)</span>
+                <span className="text-[#c4b9a8]">Estatuto Internacional del Secreto Mágico (1689)</span>
               </li>
               <li>
-                <span className="text-[#877c6c]">Código de Uso Razonable de Varitas</span>
+                <span className="text-[#c4b9a8]">Código de Uso Razonable de Varitas</span>
               </li>
               <li>
-                <span className="text-[#877c6c]">Confederación Internacional de Magos</span>
+                <span className="text-[#c4b9a8]">Confederación Internacional de Magos</span>
               </li>
               <li>
-                <span className="text-[#877c6c]">Reglamento de Lechuzas Mensajeras</span>
+                <span className="text-[#c4b9a8]">Reglamento de Lechuzas Mensajeras</span>
               </li>
             </ul>
           </div>
 
         </div>
 
-        <div className="flex justify-center py-8">
-          <a
-            href="#inscripcion"
-            className="inline-flex items-center justify-center rounded-full border border-[#e6ca65]/60 bg-[#e6ca65] px-6 py-3 font-cinzel text-sm font-bold uppercase tracking-wider text-[#0c0b12] shadow-lg transition-colors hover:bg-[#ffd700] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e6ca65]"
-          >
-            Inscribirme ahora
-          </a>
-        </div>
-
         {/* Bottom Bar: Copyright & Tech Stack */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#6b6254]">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#c2b6a3]">
           <div className="flex items-center gap-2">
             <span>© 2026 Colegio Hogwarts de Magia y Hechicería.</span>
             <span>•</span>

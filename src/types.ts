@@ -29,6 +29,9 @@ export interface Benefit {
 
 export interface AdmissionApplication {
   id?: string;
+  nombre?: string;
+  apellidos?: string;
+  correo?: string;
   fullName: string;
   age: number;
   pet: 'lechuza' | 'gato' | 'sapo' | 'rata';

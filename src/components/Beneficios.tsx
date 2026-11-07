@@ -80,9 +80,9 @@ export const Beneficios: React.FC = () => {
           <div className="flex items-center gap-4">
             <div className="text-4xl">⚡</div>
             <div>
-              <h4 className="font-cinzel text-lg sm:text-xl font-bold text-white">
+              <h3 className="font-cinzel text-lg sm:text-xl font-bold text-white">
                 Torneo Intercasas de Quidditch 2026
-              </h4>
+              </h3>
               <p className="text-sm text-[#baa990]">
                 Los entrenamientos comienzan la primera semana tras la Ceremonia de Selección. ¿Tienes lo necesario para ser Buscador?
               </p>

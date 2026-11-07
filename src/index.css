@@ -108,14 +108,15 @@ body {
   border: 2px solid #45060b;
 }
 
-/* Floating candle */
+/* Floating candle & Composited Animations */
 @keyframes flicker {
-  0%, 100% { opacity: 0.9; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(0.92); }
+  0%, 100% { opacity: 0.9; transform: translateZ(0) scale(1); }
+  50% { opacity: 0.7; transform: translateZ(0) scale(0.92); }
 }
 
 .candle-flame {
   animation: flicker 1.8s infinite ease-in-out;
+  will-change: opacity, transform;
 }
 
 /* Smooth Fade In */
@@ -129,10 +130,32 @@ body {
 }
 
 @keyframes floatSlow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%, 100% { transform: translate3d(0, 0px, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
 }
 
 .animate-float-slow {
   animation: floatSlow 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* 100% Composited Rotating Rings */
+@keyframes spinCentered {
+  from { transform: translate3d(-50%, -50%, 0) rotate(0deg); }
+  to { transform: translate3d(-50%, -50%, 0) rotate(360deg); }
+}
+
+@keyframes spinCenteredRev {
+  from { transform: translate3d(-50%, -50%, 0) rotate(360deg); }
+  to { transform: translate3d(-50%, -50%, 0) rotate(0deg); }
+}
+
+.mystic-ring-1 {
+  animation: spinCentered 120s linear infinite;
+  will-change: transform;
+}
+
+.mystic-ring-2 {
+  animation: spinCenteredRev 180s linear infinite;
+  will-change: transform;
 }

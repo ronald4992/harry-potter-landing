@@ -30,6 +30,3 @@ lerna-debug.log*
 
 # Temporary / OS
 Thumbs.db
-
-# Contentsquare wizard (generated)
-.cs-wizard/

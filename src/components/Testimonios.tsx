@@ -112,13 +112,17 @@ export const Testimonios: React.FC = () => {
                   <div className="flex items-center gap-3">
                     <img
                       src={t.avatarUrl}
-                      alt={t.name}
-                      className="w-11 h-11 rounded-full object-cover border-2 border-[#e6ca65]/40"
+                      alt={`Retrato oficial de ${t.name}`}
+                      width={44}
+                      height={44}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-11 h-11 rounded-full object-cover border-2 border-[#e6ca65]/40 shadow-sm shrink-0"
                     />
                     <div>
-                      <h4 className="font-cinzel text-sm sm:text-base font-bold text-white group-hover:text-[#e6ca65] transition-colors">
+                      <h3 className="font-cinzel text-sm sm:text-base font-bold text-white group-hover:text-[#e6ca65] transition-colors">
                         {t.name}
-                      </h4>
+                      </h3>
                       <p className="text-[11px] text-[#baa990]">
                         {t.title}
                       </p>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" width="88" height="88">
+  <defs>
+    <linearGradient id="snape-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a472a"/>
+      <stop offset="100%" stop-color="#0a1d11"/>
+    </linearGradient>
+  </defs>
+  <rect width="88" height="88" rx="44" fill="url(#snape-bg)"/>
+  <!-- Straight black curtain hair back -->
+  <path d="M22 36 C22 20, 66 20, 66 36 L68 76 C64 78, 58 64, 58 52 L58 40 L30 40 L30 52 C30 64, 24 78, 20 76 Z" fill="#0f172a"/>
+  <!-- Pale face -->
+  <ellipse cx="44" cy="46" rx="16" ry="19" fill="#f8fafc"/>
+  <!-- Curtain hair front -->
+  <path d="M24 34 C30 32, 38 46, 38 60 C32 54, 28 44, 24 34 Z" fill="#0f172a"/>
+  <path d="M64 34 C58 32, 50 46, 50 60 C56 54, 60 44, 64 34 Z" fill="#0f172a"/>
+  <!-- Hooked nose -->
+  <path d="M44 42 L42 50 L45 51" stroke="#cbd5e1" stroke-width="1.6" fill="none"/>
+  <!-- Dark intense eyes -->
+  <circle cx="37" cy="43" r="1.9" fill="#020617"/>
+  <circle cx="51" cy="43" r="1.9" fill="#020617"/>
+  <!-- Stern mouth -->
+  <line x1="40" y1="55" x2="48" y2="55" stroke="#475569" stroke-width="1.6"/>
+  <!-- High buttoned black coat & Slytherin collar -->
+  <path d="M28 66 L44 58 L60 66 L56 88 L32 88 Z" fill="#090d16"/>
+  <circle cx="44" cy="66" r="1.5" fill="#1a472a"/>
+  <circle cx="44" cy="73" r="1.5" fill="#1a472a"/>
+  <circle cx="44" cy="80" r="1.5" fill="#1a472a"/>
+  <!-- Silver Slytherin border -->
+  <circle cx="44" cy="44" r="42" fill="none" stroke="#94a3b8" stroke-width="3" opacity="0.8"/>
+</svg>
